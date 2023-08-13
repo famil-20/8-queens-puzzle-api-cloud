@@ -1,0 +1,22 @@
+{
+  "name": "8-queens-puzzle-api",
+  "version": "1.0.0",
+  "description": "Use this api to get results of 8-queen-puzzle solver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no tests are implemented yet\"",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "8-queens-puzzle-api"
+  },
+  "author": "famil-20",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1435.0",
+    "eslint": "^8.46.0",
+    "mongoose": "^7.4.2",
+    "openapi-backend": "^5.9.2"
+  }
+}

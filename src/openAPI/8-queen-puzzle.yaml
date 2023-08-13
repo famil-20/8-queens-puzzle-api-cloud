@@ -1,0 +1,182 @@
+openapi: 3.0.0
+info:
+  title: 8-queens-puzzle API
+  version: 1.0.0
+  description: Use this api to get 8-queens-puzzle solver results
+  contact:
+    name: "@Famil-20"
+    email: familgayibov20@gmail.com
+
+servers:
+  - url: https://api.example.com
+    description: Production server
+
+components:
+  responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: string
+    UnauthorizedError:
+      description: API key is missing or invalid
+      headers:
+        err_authorization:
+          description: Authorization failed
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: authorization
+    AdminAuth:
+      type: apiKey
+      in: header
+      name: authorization
+
+paths:
+  /getApiKey:
+    get:
+      summary: Get an Api key for customer
+      description: Endpoint is used to get a new API key
+      operationId: getApiKey
+      security:
+        - AdminAuth: []
+
+      parameters:
+        - in: header
+          name: authorization
+          schema:
+            type: string
+          required: true
+          description: API key for authorization
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  newApiKey:
+                    type: string
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /getTask:
+    get:
+      summary: Get a task results by ID
+      description: Endpoint is used to get the result of the task
+      operationId: getTask
+      security:
+        - ApiKeyAuth: []
+
+      parameters:
+        - in: header
+          name: authorization
+          schema:
+            type: string
+          required: true
+          description: API key for authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                taskId:
+                  type: string
+              required:
+                  - taskId
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  taskId:
+                    type: string
+                  result:
+                    type: object
+
+        "400":
+          description: Invalid task ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /postTask:
+    post:
+      summary: Create a new task
+      description: Endpoint is used to create a task based on the input
+      operationId: postTask
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: header
+          name: authorization
+          schema:
+            type: string
+          required: true
+          description: API key for authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: integer
+                  minimum: 4
+                  maximum: 10
+              required:
+                - input
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  taskId:
+                    type: string
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          $ref: "#/components/responses/InternalError"
