@@ -9,7 +9,10 @@ const checkKeyValidity = function (event) {
 	console.log(APIKEYLENGTH);
 	if (event.headers.authorization) {
 		const auth = event.headers.authorization;
+		console.log(auth.length);
 		if (auth.length === APIKEYLENGTH) {
+			console.log('test');
+
 			return true;
 		}
 	}
