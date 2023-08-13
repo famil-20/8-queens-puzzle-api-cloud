@@ -1,6 +1,9 @@
 const AWS = require('aws-sdk');
 const { generateRandomString } = require('../modules/randomStringGen');
 const Task = require('../models/Task');
+const { env } = require('process');
+
+const LAMBDAFUNCNAME = env.LAMBDAFUNCNAME;
 
 const lambda = new AWS.Lambda();
 
@@ -44,7 +47,7 @@ const createTask = async (reqBody) => {
 		})
 	};
 	const params = {
-		FunctionName: 'testJava2',
+		FunctionName: LAMBDAFUNCNAME,
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify(payload)
 	};
