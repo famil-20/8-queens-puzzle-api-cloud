@@ -27,6 +27,7 @@ const ApiKeyAuth = async function (c, event) {
 
 const AdminAuth = function (c, event) {
 	if (checkKeyValidity(event)) {
+		console.log(SECRETAPIKEY);
 		return event.headers.authorization === SECRETAPIKEY;
 	}
 	return false;
