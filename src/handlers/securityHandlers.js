@@ -6,6 +6,7 @@ const APIKEYLENGTH = env.APIKEYLENGTH;
 const SECRETAPIKEY = env.SECRETAPIKEY;
 
 const checkKeyValidity = function (event) {
+	console.log(APIKEYLENGTH);
 	if (event.headers.authorization) {
 		const auth = event.headers.authorization;
 		if (auth.length === APIKEYLENGTH) {
