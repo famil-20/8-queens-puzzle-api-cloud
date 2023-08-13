@@ -1,4 +1,5 @@
 'use strict';
+const { env } = require('process');
 const APIKey = require('../models/APIKey');
 
 const APIKEYLENGTH = env.APIKEYLENGTH;
