@@ -9,7 +9,7 @@ const APIKey = require('./models/APIKey');
 const taskHandlers = require('./handlers/taskHandlers');
 const errorHandlers = require('./handlers/errorHandlers');
 
-const APIKEYLENGTH = env.APIKEYLENGTH;
+const APIKEYLENGTH = parseInt(env.APIKEYLENGTH);
 
 // Database configuration/connection
 const DBURI = env.DBURI;

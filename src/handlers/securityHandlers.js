@@ -2,7 +2,7 @@
 const { env } = require('process');
 const APIKey = require('../models/APIKey');
 
-const APIKEYLENGTH = env.APIKEYLENGTH;
+const APIKEYLENGTH = parseInt(env.APIKEYLENGTH);
 const SECRETAPIKEY = env.SECRETAPIKEY;
 
 const checkKeyValidity = function (event) {
