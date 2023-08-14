@@ -63,10 +63,10 @@ api.register({
 		return response;
 	},
 
-	getTask: async (c) => {
+	getTask: async (c, event) => {
 		let response = {};
 		try {
-			const headers = JSON.parse(c.request.headers);
+			const headers = event.headers;
 			response = taskHandlers.getTask(headers);
 			return response;
 		} catch (error) {
