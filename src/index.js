@@ -66,8 +66,8 @@ api.register({
 	getTask: async (c) => {
 		let response = {};
 		try {
-			const reqBody = JSON.parse(c.request.body);
-			response = taskHandlers.getTask(reqBody);
+			const headers = JSON.parse(c.request.headers);
+			response = taskHandlers.getTask(headers);
 			return response;
 		} catch (error) {
 			console.log(error);

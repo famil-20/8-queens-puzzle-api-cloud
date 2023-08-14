@@ -8,9 +8,9 @@ const LAMBDAFUNCNAME = env.LAMBDAFUNCNAME;
 const lambda = new AWS.Lambda();
 
 
-const getTask = async (reqBody) => {
+const getTask = async (headers) => {
 	let response = {};
-	const taskId = reqBody.taskId;
+	const taskId = headers.taskId;
 	const resultObj = await Task.findOne({ taskId: taskId });
 	if (resultObj) {
 		await Task.findOneAndDelete({ taskId: taskId });

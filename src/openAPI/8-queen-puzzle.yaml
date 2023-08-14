@@ -92,17 +92,12 @@ paths:
             type: string
           required: true
           description: API key for authorization
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                taskId:
-                  type: string
-              required:
-                  - taskId
+        - in: header
+          name: taskId
+          schema:
+            type: string
+          required: true
+          description: Task id of the requested results
       responses:
         "200":
           description: Successful response
