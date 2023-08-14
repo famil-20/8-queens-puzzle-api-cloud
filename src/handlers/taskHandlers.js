@@ -10,7 +10,7 @@ const lambda = new AWS.Lambda();
 
 const getTask = async (headers) => {
 	let response = {};
-	const taskId = headers.taskId;
+	const taskId = headers.taskid;
 	const resultObj = await Task.findOne({ taskId: taskId });
 	if (resultObj) {
 		await Task.findOneAndDelete({ taskId: taskId });

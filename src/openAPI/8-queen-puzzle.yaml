@@ -93,7 +93,7 @@ paths:
           required: true
           description: API key for authorization
         - in: header
-          name: taskId
+          name: taskid
           schema:
             type: string
           required: true
